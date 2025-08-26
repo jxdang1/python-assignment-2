@@ -29,6 +29,31 @@ def calculate_gradebook():
         print("Invalid input. Please enter a positive integer.")
         return # Exit the function on non-integer input.
 
+   # Loop to get each grade from the user.
+
+    for i in range(num_grades):
+        while True:
+            try:
+                # The f-string helps formats the prompt to show the number of grade entered
+                current_grade = int(input(f"Enter grade #{i + 1}: "))
+                
+                # Check if the grade is within a valid range
+                if 0 <= current_grade <= 100:
+                    grade_sum += current_grade
+                    grade_count += 1
+                    break # Exit the loop if valid range is entered
+                else:
+                    print("Please enter a grade between 0 and 100.")
+            except ValueError:
+                print("Please enter an integer.")
+
+
+    # Calculates the average
+    
+    if grade_count > 0:
+        grade_average = grade_sum / grade_count
+    else:
+        grade_average = 0.0
  
 
     # Conditional statement for final letter grade from the calculated average
@@ -44,8 +69,8 @@ def calculate_gradebook():
     else:
         letter_grade = "F"
 
-    
-    print(f"\nAverage grade: {average:.2f}") # Format to 2 decimal places.
+
+    print(f"\nAverage grade: {grade_average:.2f}") # Format to 2 decimal places.
     print(f"The final letter grade is: {letter_grade}")
 
 # Calls function
